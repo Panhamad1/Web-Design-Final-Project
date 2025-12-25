@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Management Panel</title>
+  <link rel="stylesheet" href="../dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <button class="close-btn" onclick="toggleSidebar()">✕</button>
+    <div class="logo">Company Panel</div>
+
+    <div class="nav-title">Menu</div>
+    <ul class="nav">
+      <li><button class="active" data-section="dashboard">Dashboard</button></li>
+      <li><button data-section="employees">Employees</button></li>
+      <li><button data-section="add-employee">Add Employee</button></li>
+      <li><button data-section="attendance">Attendance</button></li>
+      <li><button data-section="profile">Profile</button></li>
+      <li><button data-section="settings">Settings</button></li>
+      <li><button data-section="logout">Logout</button></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      © All rights reserved<br>
+      Panha Co.Ltd
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="topbar">
+      <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+      <div class="topbar-title">Employee Management</div>
+      <div class="topbar-user">Logged in as: Admin</div>
+    </header>
+    <section class="content">
+
+      <!-- DASHBOARD -->
+      <div id="dashboard" class="section">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Total Employees</div>
+            <div class="stat-value">4</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Present Today</div>
+            <div class="stat-value">3</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">On Leave</div>
+            <div class="stat-value">1</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Recent Employees</div>
+          <div class="card-subtitle">Sample data</div>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Position</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>EMP001</td><td>Kheng Sokheng</td><td>Marketing</td><td>Manager</td></tr>
+              <tr><td>EMP002</td><td>Chao Vanchhoeurng</td><td>Finance</td><td>Accountant</td></tr>
+              <tr><td>EMP003</td><td>Sok Dara</td><td>IT</td><td>Developer</td></tr>
+              <tr><td>EMP004</td><td>Lina Phan</td><td>HR</td><td>HR Officer</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Recent Activity</div>
+          <div class="card-subtitle">Static example activity</div>
+          <div class="activity-item">
+            <span>Sokheng updated her profile</span>
+            <span class="activity-time">08:45</span>
+          </div>
+          <div class="activity-item">
+            <span>New employee added: Chhoeurng</span>
+            <span class="activity-time">09:10</span>
+          </div>
+          <div class="activity-item">
+            <span>4 employees checked in</span>
+            <span class="activity-time">10:02</span>
+          </div>
+          <div class="activity-item">
+            <span>HR approved leave request</span>
+            <span class="activity-time">11:20</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Company Info</div>
+          <div class="card-subtitle">Basic static information</div>
+          <p class="text-[13px]"><strong>Company:</strong> Panha Co., Ltd.</p>
+          <p class="text-[13px]"><strong>Location:</strong> Phnom Penh, Cambodia</p>
+          <p class="text-[13px]"><strong>Departments:</strong> IT, Marketing, Finance, HR</p>
+          <p class="text-[13px]"><strong>Email:</strong> panha@company.com</p>
+        </div>
+      </div>
+
+      <!-- EMPLOYEES -->
+      <div id="employees" class="section" style="display:none;">
+        <div class="card">
+          <div class="card-title">Employees</div>
+          <div class="card-subtitle">Search, filter, sort, edit, delete</div>
+
+          <div class="toolbar">
+            <input
+              id="employeeSearch"
+              class="search-input"
+              type="text"
+              placeholder="Search by name or department..."
+            />
+
+            <select id="statusFilter" class="filter-select">
+              <option value="all">All status</option>
+              <option value="active">Active</option>
+              <option value="leave">On Leave</option>
+            </select>
+
+            <button class="sort-btn" type="button">
+              Sort by Department
+            </button>
+          </div>
+
+          <div class = "table-wrapper">
+            <table id="employeesTable">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Position</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <!-- tbody with id so we can append rows + save -->
+              <tbody id="employeesBody">
+                <tr>
+                  <td>EMP001</td>
+                  <td>Kheng Sokheng</td>
+                  <td>Marketing</td>
+                  <td>Manager</td>
+                  <td><span class="badge badge-active">Active</span></td>
+                  <td>
+                    <button class="action-btn edit-btn">Edit</button>
+                    <button class="action-btn delete-btn">Delete</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>EMP002</td>
+                  <td>Chao Vanchhoeurng</td>
+                  <td>Finance</td>
+                  <td>Accountant</td>
+                  <td><span class="badge badge-active">Active</span></td>
+                  <td>
+                    <button class="action-btn edit-btn">Edit</button>
+                    <button class="action-btn delete-btn">Delete</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>EMP003</td>
+                  <td>Sok Dara</td>
+                  <td>IT</td>
+                  <td>Developer</td>
+                  <td><span class="badge badge-leave">On Leave</span></td>
+                  <td>
+                    <button class="action-btn edit-btn">Edit</button>
+                    <button class="action-btn delete-btn">Delete</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>EMP004</td>
+                  <td>Lina Phan</td>
+                  <td>HR</td>
+                  <td>HR Officer</td>
+                  <td><span class="badge badge-active">Active</span></td>
+                  <td>
+                    <button class="action-btn edit-btn">Edit</button>
+                    <button class="action-btn delete-btn">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="employee-summary" id="employeeSummary">
+            <span id="totalEmployees">Total: 4</span>
+            <span id="activeEmployees">Active: 3</span>
+            <span id="leaveEmployees">On Leave: 1</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADD EMPLOYEE -->
+      <div id="add-employee" class="section" style="display:none;">
+        <div class="card">
+          <div class="card-title">Add Employee</div>
+          <div class="card-subtitle">Adding New Employee</div>
+
+          <form onsubmit="handleAddEmployee(event)">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input id="addName" type="text" required />
+              </div>
+              <div class="form-group">
+                <label>Employee ID</label>
+                <input id="addId" type="text" disabled placeholder="Auto-generated (EMP...)" />
+              </div>
+              <div class="form-group">
+                <label>Department</label>
+                <select id="addDept" required>
+                  <option value="">Select department</option>
+                  <option>IT</option>
+                  <option>Marketing</option>
+                  <option>Finance</option>
+                  <option>HR</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Position</label>
+                <input id="addPosition" type="text" required />
+              </div>
+              <div class="form-group">
+                <label>Phone</label>
+                <input id="addPhone" type="text" />
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input id="addEmail" type="email" />
+              </div>
+            </div>
+            <button class="btn-primary" type="submit">Save</button>
+            <p id="addMessage" class="message"></p>
+          </form>
+        </div>
+      </div>
+      <!-- ATTENDANCE -->
+      <div id="attendance" class="section" style="display:none;">
+        <div class="card">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="card-title">Attendance</div>
+              <div class="card-subtitle">Daily Record</div>
+            </div>
+          
+            <!-- NEW BUTTON -->
+            <button class="p-5 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition active:bg-blue-800">
+              + Add Attendance
+            </button>
+          </div>
+        
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>2025-11-28</td><td>EMP001</td><td>Anna</td><td>Present</td></tr>
+              <tr><td>2025-11-28</td><td>EMP003</td><td>Sok</td><td>Absent</td></tr>
+              <tr><td>2025-11-29</td><td>EMP002</td><td>John</td><td>Present</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <div id="profile" class="section" style="display:none;">
+        <div class="card">
+        
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="card-title">Employee Profile</div>
+              <div class="card-subtitle">Every Employees Profile</div>
+            </div>
+          
+            <!-- NEW BUTTON -->
+            <button
+              class="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition">
+              + Add New Profile
+            </button>
+          </div>
+        
+          <div class="profile-layout">
+            <div class="card">
+              <div class="profile-photo"></div>
+              <div class="profile-name">Anna Lee</div>
+              <div class="profile-role">Marketing Manager</div>
+            </div>
+            <div class="card">
+              <p><strong>ID:</strong> EMP001</p>
+              <p><strong>Department:</strong> Marketing</p>
+              <p><strong>Status:</strong> Active</p>
+              <p><strong>Email:</strong> anna@example.com</p>
+              <p><strong>Date Hired:</strong> 2023-03-15</p>
+              <p><strong>Phone Number:</strong> 0123456789</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- SETTINGS -->
+      <div id="settings" class="section" style="display:none;">
+        <div class="card">
+          <div class="card-title">Settings</div>
+          <div class="card-subtitle">Static settings page</div>
+          <p><strong>Theme:</strong> Light</p>
+          <p><strong>Language:</strong> English</p>
+        </div>
+      </div>
+      <!-- LOGOUT -->
+      <div id="logout" class="section" style="display:none;">
+        <div class="card">
+          <div class="card-title">Logout</div>
+          <div class="card-subtitle">This will log you out from the system.</div>
+        
+          <p class="text-[13px] mb-2.5">
+            Are you sure you want to log out from the Employee Management Panel?
+          </p>
+        
+          <!-- LOGOUT BUTTON -->
+          <button id="logoutBtn" class="btn-primary" type="button">
+            Logout
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="../script.js"></script>
+</body>
+</html>

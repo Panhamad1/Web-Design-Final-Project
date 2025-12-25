@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+body {
+    background: url("../picture/background.jpg");
+    background-size: cover;
+}
+
+.container {
+    backdrop-filter: blur(8px);       
+    background-color: rgba(19, 2, 75, 0.15);
+    border: 1px solid rgba(179, 110, 0, 0.2);
+}
+
+
+input {
+    outline: none;
+}
+
+@layer base {
+    input {
+        @apply bg-transparent text-white outline-none;
+    }
+
+    button {
+        @apply border h-13 w-80 rounded-4xl text-xl text-black bg-white font-semibold border-white;
+    }
+}
+
+
+@layer components {
+    .field{
+        @apply flex items-center justify-between w-80 px-5 py-3 rounded-full border border-white/40 bg-white/10 backdrop-blur-md;
+        @apply transition duration-200;
+    }
+    .field:hover{
+        @apply border-white
+    }
+    .field:focus-within {
+        @apply border border-white bg-white/15 shadow-[0_0_25px_rgba(255,255,255,0.35)]
+    }
+    .login-btn {
+        @apply w-80 py-3 rounded-full bg-white text-black text-xl font-semibold transition duration-200 shadow-md;
+    }
+
+    .login-btn:hover {
+        @apply shadow-2xl bg-[#c3c3c3];
+    }
+
+    .login-btn:active {
+        transform: scale(0.97);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+}
+

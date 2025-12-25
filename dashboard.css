@@ -1,0 +1,423 @@
+* {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  color: #111827;
+}
+ /* ah khang left */
+.sidebar {
+  width: 220px;
+  background-color: #111827;
+  color: white;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+ .logo {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+ .nav-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 6px;
+}
+
+ .nav {
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+ .nav li {
+  margin-bottom: 6px;
+}
+
+ .nav button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: white;
+  padding: 8px 10px;
+  text-align: left;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+ .nav button:hover {
+  background-color: #374151;
+}
+
+ .nav button.active {
+  background-color: #2563eb;
+}
+
+ .sidebar-footer {
+  margin-top: auto;
+  font-size: 11px;
+  text-align: center;
+  color: #9ca3af;
+  border-top: 1px solid #374151;
+  padding-top: 10px;
+}
+
+ /* ah kdal */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+ /* Ah kdal ler */
+ .topbar {
+  height: 56px;
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+ .topbar-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+ .topbar-user {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+ .content {
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 12px 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  margin-bottom: 16px;
+}
+
+ .card-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+ .card-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+ /* Dashboard*/
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+ .stat-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+}
+
+ .stat-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+ .stat-value {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+ /* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+ th, td {
+  border: 1px solid #e5e7eb;
+  padding: 6px 8px;
+  text-align: left;
+}
+
+ thead {
+  background-color: #f3f4f6;
+}
+
+ th {
+  font-weight: 600;
+}
+
+ /* Badge */
+.badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-size: 11px;
+}
+
+ .badge-active {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+ .badge-leave {
+  background-color: #fef9c3;
+  color: #92400e;
+}
+
+ /* button */
+.action-btn {
+  font-size: 11px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+ .edit-btn {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+
+ .delete-btn {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+ /* search filter sort page ti 2*/
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+ .search-input {
+  width: 220px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+}
+
+ .filter-select {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+  background-color: white;
+}
+
+ .sort-btn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background-color: #e5e7eb;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+ .sort-btn:hover {
+  background-color: #d1d5db;
+}
+
+ /* Summary */
+.employee-summary {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+ .employee-summary span {
+  margin-right: 10px;
+}
+
+ /* Forms */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 8px;
+}
+
+ .form-group {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+}
+
+ .form-group label {
+  margin-bottom: 4px;
+  color: #4b5563;
+}
+
+ .form-group input,
+.form-group select {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+ .btn-primary {
+  margin-top: 10px;
+  padding: 7px 12px;
+  border-radius: 6px;
+  border: none;
+  background-color: #2563eb;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+ .btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+ .message {
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+ /* Activity list */
+.activity-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 13px;
+}
+
+ .activity-item:last-child {
+  border-bottom: none;
+}
+
+ .activity-time {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+ /* Profile */
+.profile-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+ .profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  background-color: #e5e7eb;
+  margin: 0 auto 10px auto;
+}
+
+ .profile-name {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+ .profile-role {
+  text-align: center;
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-grid{
+    grid-template-columns: 1fr;
+  } 
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+}
+/* Mobile menu button */
+.menu-btn {
+  display: none;
+  font-size: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Table responsive */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .menu-btn {
+    display: block;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: -220px;
+    top: 0;
+    height: 100vh;
+    z-index: 1000;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  .main {
+    width: 100%;
+  }
+  .close-btn {
+    display: block;
+    text-align: right;
+  }
+}
+.close-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 22px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+
+
