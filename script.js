@@ -6,17 +6,18 @@ buttons.forEach(btn => {
   btn.addEventListener('click', () => {
     buttons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    
+
     const target = btn.getAttribute('data-section');
     sections.forEach(sec => {
       sec.style.display = sec.id === target ? 'block' : 'none';
     });
-  
+
     if (window.innerWidth <= 768) {
       document.querySelector('.sidebar').classList.remove('active');
     }
   });
 });
+document.getElementById('addId').value = getNextEmployeeId();
 
 
 // -------- AUTO ID GENERATOR --------
